@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free PDF to JPG converter tool - convert PDF pages to optimized JPG images quickly and easily.">
+    <meta name="keywords" content="PDF to JPG, PDF converter, JPG optimizer, online converter">
+    <meta name="author" content="harsh">
+    <title>PDF to JPG Converter - Optimize & Convert Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .ad-space {
+            margin: 20px 0;
+            text-align: center;
+            min-height: 90px;
+            background-color: #eaeaea;
+        }
+
+        input[type="file"], select, button {
+            display: block;
+            margin: 15px auto;
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        .image-preview {
+            width: 100%;
+            max-width: 400px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>PDF to JPG Converter</h1>
+        <p>Convert your PDF files into optimized JPG images</p>
+    </header>
+
+    <main>
+        <!-- Top Ad Space -->
+        <div class="ad-space">
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+                data-ad-slot="1234567890"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <input type="file" id="pdfFile" accept="application/pdf">
+        <label for="quality">Optimize Image Quality:</label>
+        <select id="quality">
+            <option value="1.0">High</option>
+            <option value="0.7">Medium</option>
+            <option value="0.4">Low</option>
+        </select>
+        <button onclick="convertPDFToJPG()">Convert</button>
+
+        <div id="output"></div>
+
+        <!-- Bottom Ad Space -->
+        <div class="ad-space">
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
+                data-ad-slot="0987654321"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 PDF to JPG Converter | SEO Optimized & Responsive
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        async function convertPDFToJPG() {
+            const fileInput = document.getElementById('pdfFile');
+            const quality = parseFloat(document.getElementById('quality').value);
+            const output = document.getElementById('output');
+            output.innerHTML = '';
+
+            if (!fileInput.files.length) return alert('Please select a PDF file.');
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = async function (e) {
+                const pdfData = new Uint8Array(e.target.result);
+                const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const viewport = page.getViewport({ scale: 2 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    await page.render({ canvasContext: context, viewport }).promise;
+
+                    const imgData = canvas.toDataURL('image/jpeg', quality);
+                    const img = document.createElement('img');
+                    img.src = imgData;
+                    img.className = 'image-preview';
+                    output.appendChild(img);
+
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = `page-${pageNum}.jpg`;
+                    link.textContent = `Download Page ${pageNum}`;
+                    link.style.display = 'block';
+                    link.style.margin = '10px auto';
+                    output.appendChild(link);
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+</body>
+
+</html>
