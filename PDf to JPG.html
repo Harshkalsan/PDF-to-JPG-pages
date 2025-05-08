@@ -1,87 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free PDF to JPG converter tool - convert PDF pages to optimized JPG images quickly and easily.">
-    <meta name="keywords" content="PDF to JPG, PDF converter, JPG optimizer, online converter">
-    <meta name="author" content="harsh">
-    <title>PDF to JPG Converter - Optimize & Convert Online</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Convert PDF files to high-quality JPG images instantly. Free online PDF to JPG converter with optimization options. Preserve image quality while reducing file size.">
+    <title>Free Online PDF to JPG Converter | Optimize & Convert PDF to Images</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="PDF to JPG, PDF Converter, Image Optimizer, PDF to Image, Online Converter">
+    <meta property="og:title" content="Free Online PDF to JPG Converter">
+    <meta property="og:description" content="Convert PDF files to optimized JPG images instantly with our free online tool.">
+    
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    crossorigin="anonymous"></script>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
         }
 
-        header {
-            background: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
         }
 
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .ad-space {
-            margin: 20px 0;
+        /* Converter Section */
+        .converter-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .file-drop-area {
+            border: 2px dashed #007bff;
+            border-radius: 5px;
+            padding: 2rem;
             text-align: center;
-            min-height: 90px;
-            background-color: #eaeaea;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
         }
 
-        input[type="file"], select, button {
-            display: block;
-            margin: 15px auto;
-            padding: 10px;
-            width: 80%;
-            max-width: 400px;
+        .file-drop-area:hover {
+            background-color: #f8f9fa;
         }
 
-        #output {
-            margin-top: 20px;
+        /* Optimization Controls */
+        .optimization-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
         }
 
-        .image-preview {
-            width: 100%;
-            max-width: 400px;
-            margin: 10px auto;
-            display: block;
+        .control-group {
+            display: flex;
+            flex-direction: column;
         }
 
-        footer {
+        /* Ad Sections */
+        .ad-section {
             text-align: center;
-            padding: 1rem;
-            background: #333;
+            margin: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .converter-section {
+                padding: 1rem;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            background: #007bff;
             color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0056b3;
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <h1>PDF to JPG Converter</h1>
-        <p>Convert your PDF files into optimized JPG images</p>
-    </header>
-
-    <main>
-        <!-- Top Ad Space -->
-        <div class="ad-space">
-            <!-- Replace with your Google AdSense code -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <div class="container">
+        <!-- Header Ad -->
+        <div class="ad-section">
+            <!-- Replace with your AdSense Ad Unit ID -->
             <ins class="adsbygoogle"
                 style="display:block"
-                data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-                data-ad-slot="1234567890"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="XXXXXXXXXX"
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
             <script>
@@ -89,83 +119,102 @@
             </script>
         </div>
 
-        <input type="file" id="pdfFile" accept="application/pdf">
-        <label for="quality">Optimize Image Quality:</label>
-        <select id="quality">
-            <option value="1.0">High</option>
-            <option value="0.7">Medium</option>
-            <option value="0.4">Low</option>
-        </select>
-        <button onclick="convertPDFToJPG()">Convert</button>
+        <main class="converter-section">
+            <h1>PDF to JPG Converter</h1>
+            <div class="file-drop-area" id="dropZone">
+                <p>Drag & Drop PDF files here or</p>
+                <input type="file" id="fileInput" accept="application/pdf">
+                <button class="btn" onclick="document.getElementById('fileInput').click()">
+                    Select PDF File
+                </button>
+            </div>
 
-        <div id="output"></div>
+            <div class="optimization-controls">
+                <div class="control-group">
+                    <label for="quality">Image Quality (%)</label>
+                    <input type="range" id="quality" min="1" max="100" value="85">
+                </div>
+                <div class="control-group">
+                    <label for="scale">Resolution Scale (%)</label>
+                    <input type="range" id="scale" min="25" max="200" value="100">
+                </div>
+            </div>
 
-        <!-- Bottom Ad Space -->
-        <div class="ad-space">
-            <!-- Replace with your Google AdSense code -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <div class="preview-section" id="preview"></div>
+            <button class="btn" id="convertBtn" onclick="convertPDF()">
+                Convert to JPG
+            </button>
+        </main>
+
+        <!-- Footer Ad -->
+        <div class="ad-section">
+            <!-- Replace with your AdSense Ad Unit ID -->
             <ins class="adsbygoogle"
                 style="display:block"
-                data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-                data-ad-slot="0987654321"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                data-ad-slot="XXXXXXXXXX"
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        &copy; 2025 PDF to JPG Converter | SEO Optimized & Responsive
-    </footer>
+    <!-- Required Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <script>
-        async function convertPDFToJPG() {
-            const fileInput = document.getElementById('pdfFile');
-            const quality = parseFloat(document.getElementById('quality').value);
-            const output = document.getElementById('output');
-            output.innerHTML = '';
+        // PDF Conversion Logic
+        async function convertPDF() {
+            const file = document.getElementById('fileInput').files[0];
+            const quality = document.getElementById('quality').value / 100;
+            const scale = document.getElementById('scale').value / 100;
 
-            if (!fileInput.files.length) return alert('Please select a PDF file.');
+            if (!file) {
+                alert('Please select a PDF file');
+                return;
+            }
 
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+            const pdfData = await file.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({data: pdfData}).promise;
+            const zip = new JSZip();
 
-            reader.onload = async function (e) {
-                const pdfData = new Uint8Array(e.target.result);
-                const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const viewport = page.getViewport({scale});
+                
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
-                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                    const page = await pdf.getPage(pageNum);
-                    const viewport = page.getViewport({ scale: 2 });
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
+                await page.render({canvasContext: context, viewport}).promise;
+                
+                const imageData = canvas.toDataURL('image/jpeg', quality);
+                zip.file(`page-${pageNum}.jpg`, imageData.split(',')[1], {base64: true});
+            }
 
-                    await page.render({ canvasContext: context, viewport }).promise;
-
-                    const imgData = canvas.toDataURL('image/jpeg', quality);
-                    const img = document.createElement('img');
-                    img.src = imgData;
-                    img.className = 'image-preview';
-                    output.appendChild(img);
-
-                    const link = document.createElement('a');
-                    link.href = imgData;
-                    link.download = `page-${pageNum}.jpg`;
-                    link.textContent = `Download Page ${pageNum}`;
-                    link.style.display = 'block';
-                    link.style.margin = '10px auto';
-                    output.appendChild(link);
-                }
-            };
-
-            reader.readAsArrayBuffer(file);
+            const zipFile = await zip.generateAsync({type: 'blob'});
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(zipFile);
+            downloadLink.download = 'converted-images.zip';
+            downloadLink.click();
         }
+
+        // Drag & Drop Handling
+        const dropZone = document.getElementById('dropZone');
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.backgroundColor = '#e9ecef';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            document.getElementById('fileInput').files = e.dataTransfer.files;
+            dropZone.style.backgroundColor = '';
+        });
     </script>
 </body>
-
 </html>
